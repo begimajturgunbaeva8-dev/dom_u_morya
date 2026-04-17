@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class HousesConfig(AppConfig):
-    name = 'houses'
+    name = "houses"
+    verbose_name = "Дома"

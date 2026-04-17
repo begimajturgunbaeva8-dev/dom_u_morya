@@ -5,3 +5,7 @@ class House(models.Model):
     name = models.CharField("Название", max_length=100)
     price = models.IntegerField("Цена")
     description = models.TextField("Описание")
+
+    class Meta:
+        verbose_name = "Дом"
+        verbose_name_plural = "Дома"
