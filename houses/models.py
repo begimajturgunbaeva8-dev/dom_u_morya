@@ -15,4 +15,4 @@ class House(models.Model):
         ordering = ["name"]
 
     def __str__(self):
-        return self.name.upper()
+        return self.name
