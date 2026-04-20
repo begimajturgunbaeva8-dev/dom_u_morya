@@ -8,7 +8,7 @@
     {% for house in houses %}
     <div style="border: 1px solid #ccc; margin: 15px 0; padding: 15px; border-radius: 8px;">
         <h2><a href="{% url 'house' house.id %}">{{ house.name }}</a></h2>
-        <p><strong>Цена:</strong> {{ house.price }} ₸</p>
+        <p><strong>Цена:</strong> {{ house.price }} </p>
         <p>{{ house.description }}</p>
         
         {% if house.photo %}
@@ -16,7 +16,9 @@
                 <img src="{{ im.url }}" alt="{{ house.name }}" style="max-width: 350px; border-radius: 8px;">
             {% endthumbnail %}
         {% endif %}
+
     </div>
 {% empty %}
     <p>Пока нет добавленных домов.</p>
 {% endfor %}
+{% endblock %}
