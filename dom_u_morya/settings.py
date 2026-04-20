@@ -37,11 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "houses.apps.HousesConfig",
-    'orders.apps.OrdersConfig',
-
-     "sorl.thumbnail",
+    "orders.apps.OrdersConfig",
+    "sorl.thumbnail",
 ]
 
 MIDDLEWARE = [
@@ -109,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Bishkek"
 
 USE_I18N = True
 
