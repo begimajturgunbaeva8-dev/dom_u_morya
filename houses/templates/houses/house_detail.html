@@ -1,12 +1,8 @@
+{% extends "index.html" %}
 {% load thumbnail %}
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ house.name }} - Дом у моря</title>
-</head>
-<body>
+{% block application %}
+
     <h1>{{ house.name }}</h1>
     
     <div>
@@ -24,5 +20,5 @@
 
     <br>
     <a href="{% url 'houses_list' %}">← Вернуться к списку домов</a>
-</body>
-</html>
+{% endblock %}
+
