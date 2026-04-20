@@ -1,24 +1,24 @@
 {% extends "index.html" %}
 {% load thumbnail %}
 
+
 {% block application %}
-
-    <h1>{{ house.name }}</h1>
-    
+    <a href="{% url 'home' %}">Главная</a>
     <div>
-        {% if house.photo %}
-            {% thumbnail house.photo "650x400" crop="center" as im %}
-                <img src="{{ im.url }}" alt="{{ house.name }}" style="max-width: 100%; border-radius: 12px;">
-            {% endthumbnail %}
-        {% else %}
-            <p>Фото отсутствует</p>
-        {% endif %}
+        <h1>{{ house.name }}</h1>
+        <div>{{ house.price }} </div>
+        <div>{{ house.description }}</div>
+
+        {% thumbnail house.photo "650x400" crop="center" as im %}
+            <img src="{{ im.url }}" alt="Дом {{ house.name }}">
+        {% endthumbnail %}
+        
+        <h2>Забронировать дом</h2>
+        <form method="post" action="{% url 'house' house_id=house.id %}">
+            {{ form.as_p }}
+            <button type="submit">Забронировать</button>
+        </form>
+        
     </div>
-
-    <h2>Цена: {{ house.price }} </h2>
-    <p>{{ house.description }}</p>
-
-    <br>
-    <a href="{% url 'houses_list' %}">← Вернуться к списку домов</a>
 {% endblock %}
 
