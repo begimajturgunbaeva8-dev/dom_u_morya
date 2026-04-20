@@ -15,6 +15,7 @@
         
         <h2>Забронировать дом</h2>
         <form method="post" action="{% url 'house' house_id=house.id %}">
+            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Забронировать</button>
         </form>
