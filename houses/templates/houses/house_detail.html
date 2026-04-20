@@ -1,0 +1,28 @@
+{% load thumbnail %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ house.name }} - Дом у моря</title>
+</head>
+<body>
+    <h1>{{ house.name }}</h1>
+    
+    <div>
+        {% if house.photo %}
+            {% thumbnail house.photo "650x400" crop="center" as im %}
+                <img src="{{ im.url }}" alt="{{ house.name }}" style="max-width: 100%; border-radius: 12px;">
+            {% endthumbnail %}
+        {% else %}
+            <p>Фото отсутствует</p>
+        {% endif %}
+    </div>
+
+    <h2>Цена: {{ house.price }} </h2>
+    <p>{{ house.description }}</p>
+
+    <br>
+    <a href="{% url 'houses_list' %}">← Вернуться к списку домов</a>
+</body>
+</html>
