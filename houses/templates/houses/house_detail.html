@@ -14,6 +14,11 @@
         {% endthumbnail %}
         
         <h2>Забронировать дом</h2>
+
+        {% if sent %}
+            <p>Спасибо ваша заявка принята! Мы свяжемся с вами в ближайшее время.</p>
+        {% endif %}
+
         <form method="post" action="{% url 'house' house_id=house.id %}">
             {% csrf_token %}
             {{ form.as_p }}
