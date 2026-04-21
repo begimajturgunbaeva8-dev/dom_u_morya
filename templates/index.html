@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <head>
 <body>
+{% include 'header.html' %}
 {% block application %}{% endblock %}
+{% include 'footer.html' %}
 </body>
 </html>
