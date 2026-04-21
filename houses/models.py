@@ -10,11 +10,10 @@ class House(models.Model):
     )
     active = models.BooleanField("Активно", default=True)
 
-
     class Meta:
         verbose_name = "Дом"
         verbose_name_plural = "Дома"
-        ordering = ["name"]
+        ordering = ["-active", "name"]
 
     def __str__(self):
         return self.name
