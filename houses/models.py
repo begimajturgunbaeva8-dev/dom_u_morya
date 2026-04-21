@@ -8,6 +8,8 @@ class House(models.Model):
     photo = models.ImageField(
         "Фото", upload_to="houses/photos/", blank=True, default=""
     )
+    active = models.BooleanField("Активно", default=True)
+
 
     class Meta:
         verbose_name = "Дом"

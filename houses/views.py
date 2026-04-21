@@ -6,26 +6,23 @@ from houses.forms import HouseFilterForm
 from orders.forms import OrderForm
 
 
-
 def houses_list(request):
     form = HouseFilterForm(request.GET)
-    houses = House.objects.all()
-    
+    houses = House.objects.filter(active=True)
+
     if form.is_valid():
 
         if form.cleaned_data["min_price"] is not None:
             houses = houses.filter(price__gte=form.cleaned_data["min_price"])
 
-        
         if form.cleaned_data["max_price"] is not None:
             houses = houses.filter(price__lte=form.cleaned_data["max_price"])
 
-    
     return render(request, "houses/houses_list.html", {"houses": houses, "form": form})
 
 
 def house_detail(request, house_id):
-    house = get_object_or_404(House, pk=house_id)
+    house = get_object_or_404(House, pk=house_id, active=True)
     form = OrderForm(request.POST or None, initial={"house": house})
 
     if request.method == "POST":
@@ -34,8 +31,8 @@ def house_detail(request, house_id):
             url = reverse("house", kwargs={"house_id": house.id})
             return HttpResponseRedirect(f"{url}?sent=1")
 
-    return render(request, "houses/house_detail.html", {
-        "house": house, 
-        "form": form,
-        "sent": "sent" in request.GET
-    })
+    return render(
+        request,
+        "houses/house_detail.html",
+        {"house": house, "form": form, "sent": "sent" in request.GET},
+    )

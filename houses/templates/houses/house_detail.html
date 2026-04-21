@@ -12,6 +12,8 @@
         {% thumbnail house.photo "650x400" crop="center" as im %}
             <img src="{{ im.url }}" alt="Дом {{ house.name }}">
         {% endthumbnail %}
+
+        {% if house.active %}
         
         <h2>Забронировать дом</h2>
 
@@ -24,6 +26,7 @@
             {{ form.as_p }}
             <button type="submit">Забронировать</button>
         </form>
+    {% endif %}
         
     </div>
 {% endblock %}
