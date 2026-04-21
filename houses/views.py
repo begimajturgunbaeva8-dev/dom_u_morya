@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q
 from houses.models import House
 from houses.forms import HouseFilterForm
 from orders.forms import OrderForm
@@ -17,6 +18,12 @@ def houses_list(request):
 
         if form.cleaned_data["max_price"] is not None:
             houses = houses.filter(price__lte=form.cleaned_data["max_price"])
+
+        if form.cleaned_data["query"]:
+            houses = houses.filter(
+                Q(description__icontains=form.cleaned_data["query"])
+                | Q(name__icontains=form.cleaned_data["query"])
+            )
 
     return render(request, "houses/houses_list.html", {"houses": houses, "form": form})
 
