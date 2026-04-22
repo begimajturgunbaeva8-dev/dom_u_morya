@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-ku176@zo3ekql2i9lx63$v7^7xogqc@jlb#_i)uqp_f0ys#_nf"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["begimai.pythonanywhere.com", "*"]
+ALLOWED_HOSTS = ["begimai.pythonanywhere.com"]
 
 
 # Application definition
@@ -39,8 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "houses.apps.HousesConfig",
-    "orders.apps.OrdersConfig",
     "sorl.thumbnail",
+    "orders",
 ]
 20
 MIDDLEWARE = [
@@ -71,6 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "dom_u_morya.wsgi.application"
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 
 # Database
@@ -106,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = "ru-ru"
+LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "Asia/Bishkek"
 
@@ -117,13 +119,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
-STATIC_ROOT = BASE_DIR / "production_static"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
-
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",

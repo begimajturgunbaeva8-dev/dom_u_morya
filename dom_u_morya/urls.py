@@ -24,10 +24,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("houses/", houses_list, name="home"),
+    path("", houses_list, name="home"),
     path("houses/<int:house_id>/", house_detail, name="house"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,33 +1,25 @@
 {% extends "index.html" %}
-{% load thumbnail %}
-
+{% load thumbnail humanize %}
 
 {% block application %}
-    <a href="{% url 'home' %}">Главная</a>
-    <div>
-        <h1>{{ house.name }}</h1>
-        <div>{{ house.price }} </div>
-        <div>{{ house.description }}</div>
+    <div class="house-detail">
+        <a href="{% url 'home' %}">Главная</a>
 
+        <h1 class="house-name">{{ house.name }} <span class="price">{{ house.price|intcomma }} &#x20bd;</span></h1>
+        <div></div>
+        <div>{{ house.description }}</div>
         {% thumbnail house.photo "650x400" crop="center" as im %}
             <img src="{{ im.url }}" alt="Дом {{ house.name }}">
         {% endthumbnail %}
 
-        {% if house.active %}
-        
-        <h2>Забронировать дом</h2>
-
+        <h2>Заявка</h2>
         {% if sent %}
-            <p>Спасибо ваша заявка принята! Мы свяжемся с вами в ближайшее время.</p>
+            <p>Спасибо! Ваша заявка принята.</p>
         {% endif %}
-
-        <form method="post" action="{% url 'house' house_id=house.id %}">
+        <form method="post" class="order-form">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Забронировать</button>
+            <button type="submit">Отправить заявку</button>
         </form>
-    {% endif %}
-        
     </div>
 {% endblock %}
-
