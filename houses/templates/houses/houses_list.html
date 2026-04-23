@@ -21,7 +21,13 @@
         </li>
     {% endfor %}
     </ul>
-    <hr> <h2>Отзывы наших гостей</h2>
+    <h3>Оставить отзыв</h3>
+<form method="post">
+    {% csrf_token %} {{ form.as_p }}  <button type="submit">Отправить отзыв</button>
+</form>
+
+<hr>
+<h2>Отзывы наших гостей</h2>
 
 <div class="reviews-section">
     {% for review in reviews %}
