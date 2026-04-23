@@ -21,4 +21,17 @@
         </li>
     {% endfor %}
     </ul>
+    <hr> <h2>Отзывы наших гостей</h2>
+
+<div class="reviews-section">
+    {% for review in reviews %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+            <strong>{{ review.author }}</strong> 
+            <span style="color: gray; font-size: 0.8em;">{{ review.created_at|date:"d.m.Y" }}</span>
+            <p>{{ review.text }}</p>
+        </div>
+    {% empty %}
+        <p>Отзывов пока нет. Будьте первым!</p>
+    {% endfor %}
+</div>
 {% endblock %}

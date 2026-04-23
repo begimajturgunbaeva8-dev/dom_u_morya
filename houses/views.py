@@ -6,11 +6,13 @@ from django.urls import reverse
 from houses.forms import HousesFilterForm
 from django.db.models import Q
 from django.utils import timezone
+from reviews.models import Review  # Импортируем модель отзывов из другого приложения
 
 
 def houses_list(request):
     houses = House.objects.filter(active=True)
     form = HousesFilterForm(request.GET)
+    reviews = Review.objects.all() # Достаем все отзывы для отображения на странице со списком домов
     if form.is_valid():
 
         if form.cleaned_data["min_price"]:
@@ -25,7 +27,7 @@ def houses_list(request):
         if form.cleaned_data["ordering"]:
             houses = houses.order_by(form.cleaned_data["ordering"])
 
-    return render(request, "houses/houses_list.html", {"houses": houses, "form": form})
+    return render(request, "houses/houses_list.html", {"houses": houses, "form": form, "reviews": reviews})
 
 
 def house_detail(request, house_id):
