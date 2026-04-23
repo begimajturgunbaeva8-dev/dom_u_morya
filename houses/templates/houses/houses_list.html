@@ -16,6 +16,7 @@
                 {% thumbnail house.photo "325x200" crop="center" as im %}
                     <img src="{{ im.url }}" alt="Дом {{ house.name }}" class="img">
                 {% endthumbnail %}
+                <p>Количество спален: {{ house.bedrooms }}</p>
             </a>
         </li>
     {% endfor %}
