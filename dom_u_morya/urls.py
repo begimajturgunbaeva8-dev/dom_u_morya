@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from houses.views import houses_list, house_detail
 from django.conf import settings
@@ -26,6 +26,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", houses_list, name="home"),
     path("houses/<int:house_id>/", house_detail, name="house"),
+    path("reviews/", include("reviews.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
