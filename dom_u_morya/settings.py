@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "houses.apps.HousesConfig",
     "sorl.thumbnail",
     "orders",
+    "reviews",
 ]
 20
 MIDDLEWARE = [
