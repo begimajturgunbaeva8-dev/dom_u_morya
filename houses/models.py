@@ -9,6 +9,7 @@ class House(models.Model):
         "Фото", upload_to="houses/photos/", blank=True, default=""
     )
     active = models.BooleanField("Активно", default=True)
+    bedrooms = models.IntegerField("Количество спален", default=1)
 
     class Meta:
         verbose_name = "Дом"
