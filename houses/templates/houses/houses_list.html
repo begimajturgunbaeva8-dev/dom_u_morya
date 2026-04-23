@@ -12,11 +12,11 @@
         <li class="house">
             <a href="{% url 'house' house_id=house.id %}">
                 <h2>{{ house.name }}</h2>
+                <p>Количество спален: {{ house.bedrooms }}</p>
                 <div class="price">{{ house.price|intcomma }}</div>
                 {% thumbnail house.photo "325x200" crop="center" as im %}
                     <img src="{{ im.url }}" alt="Дом {{ house.name }}" class="img">
                 {% endthumbnail %}
-                <p>Количество спален: {{ house.bedrooms }}</p>
             </a>
         </li>
     {% endfor %}
