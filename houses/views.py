@@ -16,7 +16,7 @@ def houses_list(request):
             formreview.save() # Сохраняем отзыв в базу
             return redirect('house_list') # Перезагружаем страницу, чтобы увидеть отзыв
     else:
-        form = ReviewForm()  
+        formreview = ReviewForm()  
 
     houses = House.objects.filter(active=True)
     form = HousesFilterForm(request.GET)
