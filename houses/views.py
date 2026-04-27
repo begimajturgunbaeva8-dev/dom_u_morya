@@ -50,12 +50,24 @@ def houses_list(request):
 
 
 def house_detail(request, house_id):
+    # 1. Находим нужный дом по ID
     house = get_object_or_404(House, id=house_id, active=True)
+    
+    # 2. Создаем форму заказа, передавая в нее данные из POST-запроса (если он есть) и начальное значение для поля 'house'
     form = OrderForm(request.POST or None, initial={"house": house})
 
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+            # 3. Говорим Django: "Подготовь данные, но не отправляй в базу сразу"
+            obj = form.save(commit=False)
+            
+            # 4. Самый важный момент: привязываем наш дом к заказу/отзыву
+            # Мы используем переменную 'house', которую создали в первой строчке функции
+            obj.house = house 
+            
+            # 5. Теперь сохраняем окончательно
+            obj.save()
+            
             url = reverse("house", kwargs={"house_id": house.id})
             return HttpResponseRedirect(f"{url}?sent=1")
 
