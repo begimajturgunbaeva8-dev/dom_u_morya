@@ -8,5 +8,9 @@ class Order(models.Model):
     phone = models.CharField("Телефон", max_length=20)
     date = models.DateTimeField("Дата", auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
     def __str__(self):
         return f"Заказ от {self.name} на дом {self.house.name}"
