@@ -1,7 +1,10 @@
 *.pyc
 .idea/*
 db.sqlite3
+staticfiles/
 /media
+v_env/
+.DS_Store
 /cache
 local_settings.py
 
